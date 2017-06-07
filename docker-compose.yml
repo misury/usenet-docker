@@ -1,7 +1,7 @@
 version: '2'
 services:
     nginx-proxy:
-        image: jwilder/nginx-proxy:latest
+       image: jwilder/nginx-proxy:latest
         container_name: nginx-proxy
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -21,7 +21,7 @@ services:
         env_file: uidgid.env
         environment:
             - EDGE=1
-            - VIRTUAL_HOST=sabnzbd.misuryplex.duckdns.org
+            - VIRTUAL_HOST=sabnzbd.misury.tv
             - VIRTUAL_PORT=8080
         restart: always
 
@@ -36,12 +36,12 @@ services:
             - 5050:5050
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=couchpotato.misuryplex.duckdns.org
+            - VIRTUAL_HOST=couchpotato.misury.tv
             - VIRTUAL_PORT=5050
         restart: always
 
     plex:
-        image: linuxserver/plex
+        image: plexinc/pms-docker
         container_name: plex
         volumes:
             - /home/plex/config/plex:/config
@@ -60,7 +60,7 @@ services:
             - 32414:32414/udp
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=plex.misuryplex.duckdns.org
+            - VIRTUAL_HOST=plex.misury.tv
             - VIRTUAL_PORT=32400
         restart: always
 
@@ -76,7 +76,7 @@ services:
             - 8989:8989
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=sonarr.misuryplex.duckdns.org
+            - VIRTUAL_HOST=sonarr.misury.tv
             - VIRTUAL_PORT=8989
         restart: always
 
@@ -91,24 +91,24 @@ services:
             - 8181:8181
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=plexpy.misuryplex.duckdns.org
+            - VIRTUAL_HOST=plexpy.misury.tv
             - VIRTUAL_PORT=8181
         restart: always
 
-    nzbhydra:
-        image: linuxserver/hydra
-        container_name: nzbhydra
-        volumes:
-            - /home/plex/config/nzbhydra:/config
-            - /home/plex/Downloads:/downloads
-            - /etc/localtime:/etc/localtime:ro
-        ports:
-            - 5075:5075
-        env_file: uidgid.env
-        environment:
-            - VIRTUAL_HOST=nzbhydra.misuryplex.duckdns.org
-            - VIRTUAL_PORT=5075
-        restart: always
+#    nzbhydra:
+#        image: linuxserver/hydra
+#        container_name: nzbhydra
+#        volumes:
+#            - /home/plex/config/nzbhydra:/config
+#            - /home/plex/Downloads:/downloads
+#            - /etc/localtime:/etc/localtime:ro
+#        ports:
+#            - 5075:5075
+#        env_file: uidgid.env
+#        environment:
+#            - VIRTUAL_HOST=nzbhydra.misury.tv
+#            - VIRTUAL_PORT=5075
+#        restart: always
 
     muximux:
         image: linuxserver/muximux
@@ -118,7 +118,7 @@ services:
             - /etc/localtime:/etc/localtime:ro
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=muximux.misuryplex.duckdns.org
+            - VIRTUAL_HOST=muximux.misury.tv
         restart: always
 
     radarr:
@@ -133,7 +133,7 @@ services:
             - 7878:7878
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=radarr.misuryplex.duckdns.org
+            - VIRTUAL_HOST=radarr.misury.tv
             - VIRTUAL_PORT=7878
         restart: always
 
@@ -147,21 +147,21 @@ services:
             - 3579:3579
         env_file: uidgid.env
         environment:
-            - VIRTUAL_HOST=ombi.misuryplex.duckdns.org
+            - VIRTUAL_HOST=ombi.misury.tv
             - VIRTUAL_PORT=3579
         restart: always
 
-    nzbget:
-        image: linuxserver/nzbget
-        container_name: nzbget
-        volumes:
-            - /home/plex/config/nzbget:/config
-            - /home/plex/Downloads/complete:/complete
-            - /home/plex/Downloads:/downloads
-        ports:
-            - 6789:6789
-        env_file: uidgid.env
-        environment:
-            - VIRTUAL_HOST=nzbget.misuryplex.duckdns.org
-            - VIRTUAL_PORT=6789
-        restart: always
+#    nzbget:
+#        image: linuxserver/nzbget
+#        container_name: nzbget
+#        volumes:
+#            - /home/plex/config/nzbget:/config
+#            - /home/plex/Downloads/complete:/complete
+#            - /home/plex/Downloads:/downloads
+#        ports:
+#            - 6789:6789
+#        env_file: uidgid.env
+#        environment:
+#            - VIRTUAL_HOST=nzbget.misury.tv
+#            - VIRTUAL_PORT=6789
+#       restart: always
